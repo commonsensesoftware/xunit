@@ -22,11 +22,15 @@ namespace Xunit.Sdk
         IMethodInfo method;
         ITypeInfo[] methodGenericTypes;
         volatile string uniqueID;
+        DisplayNameFormatter formatter;
 
         /// <summary>
         /// Used for de-serialization.
         /// </summary>
-        protected TestMethodTestCase() { }
+        protected TestMethodTestCase()
+        {
+            formatter = new DisplayNameFormatter(TestMethodDisplay.ClassAndMethod);
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TestMethodTestCase"/> class.
@@ -36,6 +40,7 @@ namespace Xunit.Sdk
         /// <param name="testMethodArguments">The arguments for the test method.</param>
         protected TestMethodTestCase(TestMethodDisplay defaultMethodDisplay, ITestMethod testMethod, object[] testMethodArguments = null)
         {
+            formatter = new DisplayNameFormatter(defaultMethodDisplay);
             DefaultMethodDisplay = defaultMethodDisplay;
             TestMethod = testMethod;
             TestMethodArguments = testMethodArguments;
@@ -48,10 +53,12 @@ namespace Xunit.Sdk
         {
             get
             {
-                if (DefaultMethodDisplay == TestMethodDisplay.ClassAndMethod)
-                    return $"{TestMethod.TestClass.Class.Name}.{TestMethod.Method.Name}";
+                if ((DefaultMethodDisplay & TestMethodDisplay.ClassAndMethod) == TestMethodDisplay.ClassAndMethod)
+                {
+                    return $"{formatter.Format(TestMethod.TestClass.Class.Name)}.{formatter.Format(TestMethod.Method.Name)}";
+                }
 
-                return TestMethod.Method.Name;
+                return formatter.Format(TestMethod.Method.Name);
             }
         }
 
@@ -266,6 +273,7 @@ namespace Xunit.Sdk
             TestMethod = data.GetValue<ITestMethod>("TestMethod");
             TestMethodArguments = data.GetValue<object[]>("TestMethodArguments");
             DefaultMethodDisplay = (TestMethodDisplay)Enum.Parse(typeof(TestMethodDisplay), data.GetValue<string>("DefaultMethodDisplay"));
+            formatter = new DisplayNameFormatter(DefaultMethodDisplay);
         }
     }
 }

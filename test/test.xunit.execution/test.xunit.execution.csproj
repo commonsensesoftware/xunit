@@ -101,6 +101,7 @@
     <Compile Include="Sdk\ExtensibilityPointFactoryTests.cs" />
     <Compile Include="Sdk\Frameworks\CollectionPerAssemblyTestCollectionFactoryTests.cs" />
     <Compile Include="Sdk\Frameworks\CollectionPerClassTestCollectionFactoryTests.cs" />
+    <Compile Include="Sdk\Frameworks\DisplayNameFormatterTests.cs" />
     <Compile Include="Sdk\Frameworks\FactDiscovererTests.cs" />
     <Compile Include="Sdk\Frameworks\Runners\ExecutionErrorTestCaseRunnerTests.cs" />
     <Compile Include="Sdk\Frameworks\Runners\TestAssemblyRunnerTests.cs" />
