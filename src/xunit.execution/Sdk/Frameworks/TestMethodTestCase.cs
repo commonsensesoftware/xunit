@@ -22,6 +22,7 @@ namespace Xunit.Sdk
         IMethodInfo method;
         ITypeInfo[] methodGenericTypes;
         volatile string uniqueID;
+        TestMethodDisplay defaultMethodDisplay;
         DisplayNameFormatter formatter;
 
         /// <summary>
@@ -29,7 +30,8 @@ namespace Xunit.Sdk
         /// </summary>
         protected TestMethodTestCase()
         {
-            formatter = new DisplayNameFormatter(TestMethodDisplay.ClassAndMethod);
+            defaultMethodDisplay = TestMethodDisplay.ClassAndMethod;
+            formatter = new DisplayNameFormatter(defaultMethodDisplay);
         }
 
         /// <summary>
@@ -40,8 +42,8 @@ namespace Xunit.Sdk
         /// <param name="testMethodArguments">The arguments for the test method.</param>
         protected TestMethodTestCase(TestMethodDisplay defaultMethodDisplay, ITestMethod testMethod, object[] testMethodArguments = null)
         {
+            this.defaultMethodDisplay = defaultMethodDisplay;
             formatter = new DisplayNameFormatter(defaultMethodDisplay);
-            DefaultMethodDisplay = defaultMethodDisplay;
             TestMethod = testMethod;
             TestMethodArguments = testMethodArguments;
         }
@@ -53,7 +55,7 @@ namespace Xunit.Sdk
         {
             get
             {
-                if ((DefaultMethodDisplay & TestMethodDisplay.ClassAndMethod) == TestMethodDisplay.ClassAndMethod)
+                if ((defaultMethodDisplay & TestMethodDisplay.ClassAndMethod) == TestMethodDisplay.ClassAndMethod)
                 {
                     return $"{formatter.Format(TestMethod.TestClass.Class.Name)}.{formatter.Format(TestMethod.Method.Name)}";
                 }
@@ -65,7 +67,18 @@ namespace Xunit.Sdk
         /// <summary>
         /// Returns the default method display to use (when not customized).
         /// </summary>
-        protected TestMethodDisplay DefaultMethodDisplay { get; private set; }
+        protected TestMethodDisplay DefaultMethodDisplay
+        {
+            get
+            {
+                return defaultMethodDisplay;
+            }
+            private set
+            {
+                defaultMethodDisplay = value;
+                formatter = new DisplayNameFormatter(value);
+            }
+        }
 
         /// <inheritdoc/>
         public string DisplayName
@@ -273,7 +286,6 @@ namespace Xunit.Sdk
             TestMethod = data.GetValue<ITestMethod>("TestMethod");
             TestMethodArguments = data.GetValue<object[]>("TestMethodArguments");
             DefaultMethodDisplay = (TestMethodDisplay)Enum.Parse(typeof(TestMethodDisplay), data.GetValue<string>("DefaultMethodDisplay"));
-            formatter = new DisplayNameFormatter(DefaultMethodDisplay);
         }
     }
 }
