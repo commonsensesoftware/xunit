@@ -18,8 +18,13 @@ namespace TestUtility
         [Obsolete("Called by the de-serializer; should only be called by deriving classes for de-serialization purposes")]
         public CulturedXunitTestCase() { }
 
-        public CulturedXunitTestCase(IMessageSink diagnosticMessageSink, TestMethodDisplay defaultMethodDisplay, ITestMethod testMethod, string culture)
-            : base(diagnosticMessageSink, defaultMethodDisplay, testMethod)
+        public CulturedXunitTestCase(
+            IMessageSink diagnosticMessageSink,
+            TestMethodDisplay defaultMethodDisplay,
+            TestMethodDisplayOptions defaultMethodDisplayOptions,
+            ITestMethod testMethod,
+            string culture)
+            : base(diagnosticMessageSink, defaultMethodDisplay, defaultMethodDisplayOptions, testMethod)
         {
             Initialize(culture);
         }

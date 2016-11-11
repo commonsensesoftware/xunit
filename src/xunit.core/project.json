@@ -6,6 +6,7 @@
             "../common/GlobalAssemblyInfo.cs",
             "../common/Guard.cs",
             "../common/TestMethodDisplay.cs",
+            "../common/TestMethodDisplayOptions.cs",
             "../xunit.assert/Asserts/Sdk/ArgumentFormatter.cs",
             "../xunit.assert/Asserts/Sdk/AssertEqualityComparer.cs",
             "../xunit.assert/Asserts/Sdk/AssertEqualityComparerAdapter.cs"

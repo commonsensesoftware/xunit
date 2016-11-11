@@ -24,6 +24,7 @@ public class ConfigReaderTests
             Assert.False(result.DiagnosticMessagesOrDefault);
             Assert.Equal(Environment.ProcessorCount, result.MaxParallelThreadsOrDefault);
             Assert.Equal(TestMethodDisplay.ClassAndMethod, result.MethodDisplayOrDefault);
+            Assert.Equal(TestMethodDisplayOptions.None, result.MethodDisplayOptionsOrDefault);
             Assert.False(result.ParallelizeAssemblyOrDefault);
             Assert.True(result.ParallelizeTestCollectionsOrDefault);
             Assert.True(result.PreEnumerateTheoriesOrDefault);
@@ -37,6 +38,7 @@ public class ConfigReaderTests
             Assert.True(result.DiagnosticMessagesOrDefault);
             Assert.Equal(2112, result.MaxParallelThreadsOrDefault);
             Assert.Equal(TestMethodDisplay.Method, result.MethodDisplayOrDefault);
+            Assert.Equal(TestMethodDisplayOptions.All, result.MethodDisplayOptionsOrDefault);
             Assert.True(result.ParallelizeAssemblyOrDefault);
             Assert.False(result.ParallelizeTestCollectionsOrDefault);
             Assert.False(result.PreEnumerateTheoriesOrDefault);
@@ -51,6 +53,7 @@ public class ConfigReaderTests
             Assert.False(result.DiagnosticMessagesOrDefault);
             Assert.Equal(Environment.ProcessorCount, result.MaxParallelThreadsOrDefault);
             Assert.Equal(TestMethodDisplay.ClassAndMethod, result.MethodDisplayOrDefault);
+            Assert.Equal(TestMethodDisplayOptions.None, result.MethodDisplayOptionsOrDefault);
             // This value was valid as a sentinel to make sure we were trying to read values from the JSON
             Assert.True(result.ParallelizeAssemblyOrDefault);
             Assert.True(result.ParallelizeTestCollectionsOrDefault);
@@ -68,6 +71,7 @@ public class ConfigReaderTests
             Assert.False(result.DiagnosticMessagesOrDefault);
             Assert.Equal(Environment.ProcessorCount, result.MaxParallelThreadsOrDefault);
             Assert.Equal(TestMethodDisplay.ClassAndMethod, result.MethodDisplayOrDefault);
+            Assert.Equal(TestMethodDisplayOptions.None, result.MethodDisplayOptionsOrDefault);
             Assert.False(result.ParallelizeAssemblyOrDefault);
             Assert.True(result.ParallelizeTestCollectionsOrDefault);
             Assert.True(result.PreEnumerateTheoriesOrDefault);
@@ -81,6 +85,7 @@ public class ConfigReaderTests
             Assert.True(result.DiagnosticMessagesOrDefault);
             Assert.Equal(2112, result.MaxParallelThreadsOrDefault);
             Assert.Equal(TestMethodDisplay.Method, result.MethodDisplayOrDefault);
+            Assert.Equal(TestMethodDisplayOptions.All, result.MethodDisplayOptionsOrDefault);
             Assert.True(result.ParallelizeAssemblyOrDefault);
             Assert.False(result.ParallelizeTestCollectionsOrDefault);
             Assert.False(result.PreEnumerateTheoriesOrDefault);
@@ -95,6 +100,7 @@ public class ConfigReaderTests
             Assert.False(result.DiagnosticMessagesOrDefault);
             Assert.Equal(Environment.ProcessorCount, result.MaxParallelThreadsOrDefault);
             Assert.Equal(TestMethodDisplay.ClassAndMethod, result.MethodDisplayOrDefault);
+            Assert.Equal(TestMethodDisplayOptions.None, result.MethodDisplayOptionsOrDefault);
             // This value was valid as a sentinel to make sure we were trying to read values from the file
             Assert.True(result.ParallelizeAssemblyOrDefault);
             Assert.True(result.ParallelizeTestCollectionsOrDefault);

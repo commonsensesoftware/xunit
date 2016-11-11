@@ -33,6 +33,7 @@ namespace Xunit
             {
                 result.SetDiagnosticMessages(configuration.DiagnosticMessages);
                 result.SetMethodDisplay(configuration.MethodDisplay);
+                result.SetMethodDisplayOptions(configuration.MethodDisplayOptions);
                 result.SetPreEnumerateTheories(configuration.PreEnumerateTheories);
             }
 

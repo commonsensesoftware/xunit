@@ -15,6 +15,7 @@
             "../common/SerializationHelper.cs",
             "../common/SourceInformation.cs",
             "../common/TestMethodDisplay.cs",
+            "../common/TestMethodDisplayOptions.cs",
             "../common/TestOptionsNames.cs",
             "../common/XunitSerializationInfo.cs",
             "../common/XunitWorkerThread.cs",
